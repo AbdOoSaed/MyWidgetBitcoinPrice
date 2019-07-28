@@ -1,3 +1,3 @@
 # MyWidgetBitcoinPrice.
 # Widget to show Bitcoin Price and updata every 1 second.
-![Screenshot_1559230529](https://user-images.githubusercontent.com/33700292/58644361-5ffaf900-8301-11e9-8f76-2d44a9a9a051.png)
+![ezgif com-optimize](https://user-images.githubusercontent.com/33700292/62013625-eab57400-b149-11e9-9003-fad09e72e6f4.gif)
