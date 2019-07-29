@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2019/7/28.
+ * Created by AbdOo Saed from Egypt.
+ * all Copyright reserved.
+ */
+
 package com.example.mywidget;
 
 import android.content.Context;

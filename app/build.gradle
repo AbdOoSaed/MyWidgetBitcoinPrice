@@ -1,10 +1,16 @@
+/*
+ * Copyright (c) 2019/7/28.
+ * Created by AbdOo Saed from Egypt.
+ * all Copyright reserved.
+ */
+
 apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.mywidget"
-        minSdkVersion 21
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"

@@ -1,7 +1,13 @@
+<!--
+  ~ Copyright (c) 2019/7/28.
+  ~ Created by AbdOo Saed from Egypt.
+  ~ all Copyright reserved.
+  -->
+
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

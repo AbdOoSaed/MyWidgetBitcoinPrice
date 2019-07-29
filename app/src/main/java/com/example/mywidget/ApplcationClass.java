@@ -1,19 +1,22 @@
+/*
+ * Copyright (c) 2019/7/28.
+ * Created by AbdOo Saed from Egypt.
+ * all Copyright reserved.
+ */
+
 package com.example.mywidget;
 
 import android.app.Application;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+
+import static com.example.mywidget.Util.startServiceWidget;
 
 public class ApplcationClass extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
+        startServiceWidget(getApplicationContext());
     }
 
-    public static boolean isOnline(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
-    }
+
 }
