@@ -10,6 +10,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.widget.Toast;
+
 import static com.example.mywidget.PreferenceHelper.removeAllInt;
 import static com.example.mywidget.PreferenceHelper.setIntMaxPrefs;
 import static com.example.mywidget.PreferenceHelper.setIntPrefs;

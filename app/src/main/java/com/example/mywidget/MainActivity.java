@@ -19,7 +19,7 @@ import android.widget.TextView;
 import static com.example.mywidget.MyService.DATA_BROADCAST_BIT;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tvPriceMain,tvLastUpdateMain;
+    private TextView tvPriceMain, tvLastUpdateMain;
     private BroadcastReceiver broadcastReceiver;
     private int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String[] parts = PreferenceHelper.getDataBit(context).split("\\$");
-                tvPriceMain.setText(parts[0]+"$");
-                tvLastUpdateMain.setText(parts[1].split("\n")[0]+parts[1].split("\n")[1]);
+                tvPriceMain.setText(parts[0] + "$");
+                tvLastUpdateMain.setText(parts[1].split("\n")[0] + parts[1].split("\n")[1]);
 
             }
         };

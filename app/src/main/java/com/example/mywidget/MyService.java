@@ -35,12 +35,15 @@ import static com.example.mywidget.Util.url;
 
 
 public class MyService extends Service {
+    public static final String DATA_BROADCAST_BIT = "databit";
     private String data = "";
     private Intent intent;
     private RemoteViews remoteViews;
-    public static final String DATA_BROADCAST_BIT = "databit";
     private SimpleDateFormat formatter;
     private String strDate;
+
+    public MyService() {
+    }
 
     @Override
     public void onCreate() {
@@ -51,9 +54,6 @@ public class MyService extends Service {
     public void onDestroy() {
         super.onDestroy();
         restartService();
-    }
-
-    public MyService() {
     }
 
     @Override
@@ -99,9 +99,9 @@ public class MyService extends Service {
                     //send date to main activty
                     getApplicationContext().sendBroadcast(new Intent(DATA_BROADCAST_BIT));
                     formatter = new SimpleDateFormat("M/dd \n hh:mm a", new Locale("EN"));
-                     strDate = formatter.format(new Date());
+                    strDate = formatter.format(new Date());
                     removeBitData(getApplicationContext());
-                    storeBitData(data+strDate, getApplicationContext());
+                    storeBitData(data + strDate, getApplicationContext());
                     remoteViews.setTextViewText(R.id.appwidget_text, data);
                     remoteViews.setTextViewText(R.id.app_widget_time_text, strDate);
                     PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(),

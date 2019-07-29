@@ -15,10 +15,10 @@ import android.os.Build;
 import static com.example.mywidget.PreferenceHelper.getIntMaxPrefs;
 import static com.example.mywidget.PreferenceHelper.getIntPrefs;
 
- class Util {
+class Util {
     static String url = "https://blockchain.info/ticker";
 
-     static void startServiceWidget(Context context) {
+    static void startServiceWidget(Context context) {
         if (getIntMaxPrefs(context) != -1) {
             for (int a = 0; a <= 1; a++) {
                 Intent inte = new Intent(context, MyService.class);
@@ -40,7 +40,7 @@ import static com.example.mywidget.PreferenceHelper.getIntPrefs;
         }
     }
 
-     static boolean isOnline(Context context) {
+    static boolean isOnline(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();

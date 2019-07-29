@@ -21,7 +21,7 @@ public class StartActivityOnBootReceiver extends BroadcastReceiver {
             startServiceWidget(context);
         } else {
             startServiceWidget(context);
-            Toast.makeText(context, ""+intent.getAction(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "" + intent.getAction(), Toast.LENGTH_LONG).show();
         }
     }
 }
