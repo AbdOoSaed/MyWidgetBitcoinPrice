@@ -1,17 +1,20 @@
 /*
- * Copyright (c) 2019/7/28.
+ * Copyright (c) 2019/8/7.
  * Created by AbdOo Saed from Egypt.
  * all Copyright reserved.
  */
 
 package com.example.mywidget;
 
+import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -28,6 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import static com.example.mywidget.PreferenceHelper.getIntMaxPrefs;
+import static com.example.mywidget.PreferenceHelper.getIntPrefs;
 import static com.example.mywidget.PreferenceHelper.removeBitData;
 import static com.example.mywidget.PreferenceHelper.storeBitData;
 import static com.example.mywidget.Util.isOnline;
@@ -81,7 +86,7 @@ public class MyService extends Service {
             stopSelf();
         }
 //        return super.onStartCommand(intent, flags, startId);
-        return Service.START_REDELIVER_INTENT;
+        return Service.START_STICKY_COMPATIBILITY;
     }
 
     @Override
@@ -130,6 +135,7 @@ public class MyService extends Service {
     public void onTaskRemoved(Intent rootIntent) {
 
         restartService();
+        Toast.makeText(this, "onTaskRemoved", Toast.LENGTH_SHORT).show();
         super.onTaskRemoved(rootIntent);
 
     }
@@ -137,15 +143,26 @@ public class MyService extends Service {
     private void restartService() {
         Intent intentRestartService = new Intent(getApplicationContext(), this.getClass());
         intentRestartService.setPackage(getPackageName());
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                getApplicationContext().startForegroundService(intentRestartService);
-                getApplicationContext().startService(intentRestartService);
-            } else {
-                getApplicationContext().startService(intentRestartService);
+        if (getIntMaxPrefs(getApplicationContext()) != -1) {
+            for (int a = 0; a <= 1; a++) {
+                intentRestartService.putExtra("appwidgetid", getIntPrefs(a + "", getApplicationContext()));
+
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            PendingIntent pendingIntent = PendingIntent.getService(this, 1, intentRestartService, PendingIntent.FLAG_ONE_SHOT);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime() + 2000, pendingIntent);
+            //old restart service
+//        intentRestartService.setPackage(getPackageName());
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    getApplicationContext().startForegroundService(intentRestartService);
+                    getApplicationContext().startService(intentRestartService);
+                } else {
+                    getApplicationContext().startService(intentRestartService);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
